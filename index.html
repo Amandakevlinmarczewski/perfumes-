@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=import base64
+
+# Criando o arquivo HTML completo para o site de marcas de perfume mais conhecidas.
+html_content = """<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universum Perfumes - As Marcas Mais Famosas do Mundo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', 'Didot', 'Georgia', serif;
+        }
+
+        body {
+            background-color: #fcfbfa;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eae5df;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav h1 {
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        nav p {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8c847c;
+            margin-top: 5px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(26, 26, 26, 0.4), rgba(26, 26, 26, 0.4)), url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+            height: 400px;
+            display: table;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-cell {
+            display: table-cell;
+            vertical-align: middle;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .hero-cell h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero-cell p {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Main Content Container */
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .intro-text {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .intro-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .intro-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background-color: #bfa37a;
+        }
+
+        .intro-text p {
+            font-family: 'Segoe UI', sans-serif;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Brand Block (Alternating Grid using Table Layout approach for standard rendering) */
+        .brand-section {
+            margin-bottom: 80px;
+            background-color: #ffffff;
+            border: 1px solid #eae5df;
+            border-radius: 4px;
+            overflow: hidden;
+            display: table;
+            width: 100%;
+        }
+
+        .brand-row {
+            display: table-row;
+        }
+
+        .brand-img-col {
+            display: table-cell;
+            width: 45%;
+            vertical-align: middle;
+            background-color: #f7f5f2;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .brand-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .brand-info-col {
+            display: table-cell;
+            width: 55%;
+            padding: 50px;
+            vertical-align: middle;
+        }
+
+        .brand-country {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #bfa37a;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .brand-name {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .brand-description {
+            font-family: 'Segoe UI', sans-serif;
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .brand-details-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .brand-details-table tr {
+            border-bottom: 1px solid #f2eeea;
+        }
+
+        .brand-details-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .brand-details-table td {
+            padding: 10px 0;
+        }
+
+        .td-label {
+            font-weight: 600;
+            color: #333;
+            width: 35%;
+        }
+
+        .td-val {
+            color: #666;
+        }
+
+        .tag-container {
+            margin-top: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.75rem;
+            background-color: #f4ece1;
+            color: #7d6b54;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #b5ada5;
+            padding: 40px 20px;
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-top: 4px solid #bfa37a;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer .credits {
+            color: #666;
+            font-size: 0.75rem;
+        }
+
+        /* Responsive styling using display blocks on small width */
+        @media (max-width: 768px) {
+            .brand-section, .brand-row {
+                display: block;
+            }
+            .brand-img-col, .brand-info-col {
+                display: block;
+                width: 100%;
+            }
+            .brand-img {
+                height: 300px;
+            }
+            .brand-info-col {
+                padding: 30px 20px;
+            }
+            .hero-cell h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>Universum Perfumes</h1>
+        <p>A Alta Perfumaria & As Marcas Mais Icônicas do Mundo</p>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-cell">
+            <h2>A Arte da Memória Olfativa</h2>
+            <p>Descubra a história, os segredos e as fragrâncias assinaturas das casas de perfume mais consagradas e utilizadas no planeta.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="intro-text">
+            <h3>As Grandes Casas Olfativas</h3>
+            <p>O perfume é uma extensão da personalidade, uma assinatura invisível. Abaixo, exploramos as grifes líderes globais em vendas, prestígio e fixação, que moldaram o mercado da perfumaria de luxo e do dia a dia.</p>
+        </div>
+
+        <div class="brand-section">
+            <div class="brand-row">
+                <div class="brand-img-col">
+                    <img class="brand-img" src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=600" alt="Perfume Chanel">
+                </div>
+                <div class="brand-info-col">
+                    <span class="brand-country">França</span>
+                    <h2 class="brand-name">Chanel</h2>
+                    <p class="brand-description">Sinônimo máximo de elegância atemporal, a Maison Chanel revolucionou o mundo em 1921 com o lançamento do lendário Chanel Nº 5. Suas fragrâncias combinam notas complexas, matérias-primas raras (como o jasmim de Grasse) e frascos minimalistas com linhas geométricas impecáveis.</p>
+                    
+                    <table class="brand-details-table">
+                        <tr>
+                            <td class="td-label">Fundação:</td>
+                            <td class="td-val">1910 (Paris)</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Fragrância Ícone:</td>
+                            <td class="td-val">Chanel Nº 5, Coco Mademoiselle, Bleu de Chanel</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Estilo Olfativo:</td>
+                            <td class="td-val">Aldeídico, Floral Sofisticado, Amadeirado Elegante</td>
+                        </tr>
+                    </table>
+
+                    <div class="tag-container">
+                        <span class="tag">#AltaCostura</span>
+                        <span class="tag">#MaisVendidoDoMundo</span>
+                        <span class="tag">#EleganciaParisiense</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="brand-section">
+            <div class="brand-row">
+                <div class="brand-img-col">
+                    <img class="brand-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=600" alt="Perfume Dior">
+                </div>
+                <div class="brand-info-col">
+                    <span class="brand-country">França</span>
+                    <h2 class="brand-name">Christian Dior</h2>
+                    <p class="brand-description">A casa Dior traduz a paixão pelas flores e pela audácia em suas criações olfativas. Desde o clássico Miss Dior (nascido junto com o New Look em 1947) até o fenômeno global Sauvage, a Dior domina os rankings de vendas combinando requinte extremo e apelo comercial irresistível.</p>
+                    
+                    <table class="brand-details-table">
+                        <tr>
+                            <td class="td-label">Fundação:</td>
+                            <td class="td-val">1946 (Paris)</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Fragrância Ícone:</td>
+                            <td class="td-val">J'adore, Sauvage, Miss Dior, Fahrenheit</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Estilo Olfativo:</td>
+                            <td class="td-val">Floral Opulento, Fougère Moderno, Cítrico Fresco</td>
+                        </tr>
+                    </table>
+
+                    <div class="tag-container">
+                        <span class="tag">#SauvageFenomeno</span>
+                        <span class="tag">#Sofisticacao</span>
+                        <span class="tag">#NotasFlorais</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="brand-section">
+            <div class="brand-row">
+                <div class="brand-img-col">
+                    <img class="brand-img" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=600" alt="Perfume Carolina Herrera">
+                </div>
+                <div class="brand-info-col">
+                    <span class="brand-country">Estados Unidos / Venezuela</span>
+                    <h2 class="brand-name">Carolina Herrera</h2>
+                    <p class="brand-description">Reconhecida por unir a sofisticação aristocrática ao dinamismo cosmopolita de Nova York, Carolina Herrera criou verdadeiros impérios de vendas. Seus frascos inovadores, como o sapato de salto agulha de Good Girl e o design urbano da linha 212, são ícones de desejo global.</p>
+                    
+                    <table class="brand-details-table">
+                        <tr>
+                            <td class="td-label">Fundação:</td>
+                            <td class="td-val">1980 (Nova York)</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Fragrância Ícone:</td>
+                            <td class="td-val">Good Girl, 212 VIP Men, CH, Bad Boy</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Estilo Olfativo:</td>
+                            <td class="td-val">Doces Orientais, Florais Gourmand, Especiados</td>
+                        </tr>
+                    </table>
+
+                    <div class="tag-container">
+                        <span class="tag">#EstiloUrbano</span>
+                        <span class="tag">#FrascosMarcantes</span>
+                        <span class="tag">#SucessoJovem</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="brand-section">
+            <div class="brand-row">
+                <div class="brand-img-col">
+                    <img class="brand-img" src="https://images.unsplash.com/photo-1615396899839-c99c121888b0?auto=format&fit=crop&q=80&w=600" alt="Perfume Paco Rabanne">
+                </div>
+                <div class="brand-info-col">
+                    <span class="brand-country">França / Espanha</span>
+                    <h2 class="brand-name">Paco Rabanne (Rabanne)</h2>
+                    <p class="brand-description">Conhecida por sua essência ousada, futurista e provocante. Na perfumaria, quebrou recordes com o marcante lingote de ouro de One Million, um dos perfumes masculinos mais usados do século XXI. Suas criações são magnéticas, intensas e com altíssimo poder de fixação.</p>
+                    
+                    <table class="brand-details-table">
+                        <tr>
+                            <td class="td-label">Fundação:</td>
+                            <td class="td-val">1966 (Paris)</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Fragrância Ícone:</td>
+                            <td class="td-val">One Million, Invictus, Lady Million, Olympéa</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Estilo Olfativo:</td>
+                            <td class="td-val">Amadeirado Especiado, Aquático Intenso, Adocicado</td>
+                        </tr>
+                    </table>
+
+                    <div class="tag-container">
+                        <span class="tag">#RecordistaDeVendas</span>
+                        <span class="tag">#FixacaoMarcante</span>
+                        <span class="tag">#Audacia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="brand-section">
+            <div class="brand-row">
+                <div class="brand-img-col">
+                    <img class="brand-img" src="https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?auto=format&fit=crop&q=80&w=600" alt="Perfume Giorgio Armani">
+                </div>
+                <div class="brand-info-col">
+                    <span class="brand-country">Itália</span>
+                    <h2 class="brand-name">Giorgio Armani</h2>
+                    <p class="brand-description">Representante máxima do luxo refinado e sem esforço italiano. A marca assina o Acqua di Giò, amplamente considerado o perfume masculino fresco mais vendido e aclamado da história. A linha Si define a feminilidade moderna com notas elegantes de chipre e baunilha.</p>
+                    
+                    <table class="brand-details-table">
+                        <tr>
+                            <td class="td-label">Fundação:</td>
+                            <td class="td-val">1975 (Milão)</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Fragrância Ícone:</td>
+                            <td class="td-val">Acqua di Giò, Armani Code, Sí, My Way</td>
+                        </tr>
+                        <tr>
+                            <td class="td-label">Estilo Olfativo:</td>
+                            <td class="td-val">Cítrico Marinho, Oriental Amadeirado, Chipre Frutado</td>
+                        </tr>
+                    </table>
+
+                    <div class="tag-container">
+                        <span class="tag">#LuxoItaliano</span>
+                        <span class="tag">#FrescorMarinho</span>
+                        <span class="tag">#Atemporal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Universum Perfumes. Guia Exclusivo das Marcas de Luxo mais Populares.</p>
+        <p class="credits">Desenvolvido com foco em estética minimalista e conteúdo informativo sobre alta perfumaria.</p>
+    </footer>
+
+</body>
+</html>
+"""
+
+with open("site_perfumes.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Arquivo gerado com sucesso!"), initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
